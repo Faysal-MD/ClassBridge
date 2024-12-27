@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-left">
         <Link to="/" className="logo">
-          MastersGang
+          ClassBridge
         </Link>
         <svg
           onClick={togglePopup} // Toggle popup visibility on click
