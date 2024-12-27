@@ -22,9 +22,9 @@ const mailer = async (receiverEmail, code) => {
   });
 
   let info = await transporter.sendMail({
-    from: "Team MastersGang",
+    from: "Team ClassBridge",
     to: receiverEmail,
-    subject: "OTP for MastersGang",
+    subject: "OTP for ClassBridge",
     text: "Your OTP is " + code,
     html: "<b>Your OTP is " + code + "</b>",
   });
@@ -291,6 +291,27 @@ router.get("/classroomsforstudent", authTokenHandler, async (req, res) => {
     );
   } catch (err) {
     console.log(err);
+    return responseFunction(res, 500, "Internal server error", err, false);
+  }
+});
+
+// Route to fetch all available classrooms
+router.get("/allclassrooms", async (req, res) => {
+  try {
+    const classrooms = await Classroom.find(); // Fetch all classrooms from the database
+
+    if (classrooms.length === 0) {
+      return responseFunction(res, 404, "No classrooms found", null, false);
+    }
+
+    return responseFunction(
+      res,
+      200,
+      "Classrooms fetched successfully",
+      classrooms,
+      true
+    );
+  } catch (err) {
     return responseFunction(res, 500, "Internal server error", err, false);
   }
 });
