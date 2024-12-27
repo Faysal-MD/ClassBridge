@@ -24,7 +24,7 @@ app.use(
     credentials: true,
   })
 );
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(
   cookieParser({
     httpOnly: true,
